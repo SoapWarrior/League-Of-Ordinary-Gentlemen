@@ -48,7 +48,7 @@ public:
 
 
 	void Translate(float x, float y, float z,float w);
-	void Translate(const vec4 &vec);
+	//void Translate(const vec4 &vec);
 
 	mat4 operator*(const vec4 &other);
 //	operator * (vec4)
