@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector4.h"
 
 enum matIndex
 {
@@ -39,7 +40,7 @@ public:
 	mat4 operator-();
 	//opertator -(unary)
 
-	//mat4 operator*(const mat4 &other);
+	mat4 operator*(const mat4 &other);
 	//operator *(mat4)
 
 	
@@ -49,8 +50,8 @@ public:
 	void Translate(float x, float y, float z,float w);
 	void Translate(const vec4 &vec);
 
-	//mat4 operator*(const vec4 &other);
-	//operator * (vec4)
+	mat4 operator*(const vec4 &other);
+//	operator * (vec4)
 
 
 //	void RotateX(float degrees);
