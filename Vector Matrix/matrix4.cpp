@@ -53,15 +53,15 @@ void mat4::Translate(const vec4 &vec)
 
 }
 
-mat4 mat4::operator*(const vec4 &vec)
+vec4 mat4::operator*(const vec4 &vec)
 {
 
-	return mat4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	return vec4(
 		
-		data[Px] = data[Rx] * vec.x + data[Ux] * vec.x + data[Fx] * vec.x + data[Px] * vec.w,
-		data[Py] = data[Ry] * vec.y + data[Uy] * vec.y + data[Fy] * vec.y + data[Py] * vec.w,
-		data[Pz] = data[Rz] * vec.z + data[Uz] * vec.z + data[Fz] * vec.z + data[Pz] * vec.w,
-		data[Pw] = data[Rw] * vec.w + data[Uw] * vec.w + data[Fw] * vec.w + data[Pw] * vec.w);
+		data[Rx] * vec.x + data[Ux] * vec.x + data[Fx] * vec.x + data[Px] * vec.w,
+		data[Ry] * vec.y + data[Uy] * vec.y + data[Fy] * vec.y + data[Py] * vec.w,
+	    data[Rz] * vec.z + data[Uz] * vec.z + data[Fz] * vec.z + data[Pz] * vec.w,
+		data[Rw] * vec.w + data[Uw] * vec.w + data[Fw] * vec.w + data[Pw] * vec.w);
 
 }
 

@@ -50,10 +50,14 @@ public:
 	void Translate(float x, float y, float z,float w);
 	void Translate(const vec4 &vec);
 
-	mat4 operator*(const vec4 &other);
+	vec4 operator*(const vec4 &other);
 //	operator * (vec4)
 
-
+	//transpose
+	//inverse
+	//flood
+	//scale x,y,z
+	//scale v3
 //	void RotateX(float degrees);
 //	void RotateY(float degrees);
 //	void RotateZ(float degrees);
