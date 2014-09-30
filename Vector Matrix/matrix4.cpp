@@ -44,7 +44,7 @@ void mat4::Translate(float x, float y, float z,float w)
 
 }
 
-/*void mat4::Translate(const vec4 &vec)
+void mat4::Translate(const vec4 &vec)
 {
 	data[Px] = data[Rx] * vec.x + data[Ux] * vec.x + data[Fx] * vec.x + data[Px] * vec.w;
 	data[Py] = data[Ry] * vec.y + data[Uy] * vec.y + data[Fy] * vec.y + data[Py] * vec.w;
