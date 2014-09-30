@@ -1,4 +1,5 @@
 #include "Matrix.h"
+#include "Vector.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include <math.h>
@@ -10,7 +11,7 @@ mat4::mat4()
 	data[Rz] = 0.0f, data[Uz] = 0.0f, data[Fz] = 1.0f, data[Fz] = 0.0f;
 	data[Rw] = 0.0f, data[Uw] = 0.0f, data[Fw] = 0.0f, data[Fw] = 1.0f;
 	
-}
+};
 
 mat4::mat4(float rx, float ux, float fx, float px,
 	float ry, float uy, float fy, float py,
@@ -21,7 +22,7 @@ mat4::mat4(float rx, float ux, float fx, float px,
 	data[Ry] = ry, data[Uy] = uy, data[Fy] = fy, data[Py] = py;
 	data[Rz] = rz, data[Uz] = uz, data[Fz] = fz, data[Pz] = pz;
 	data[Rw] = rw, data[Uw] = uw, data[Fw] = fw, data[Pw] = pw;
-}
+};
 
 void mat4::LoadIdentity()
 {
@@ -43,7 +44,7 @@ void mat4::Translate(float x, float y, float z,float w)
 
 }
 
-void mat4::Translate(const vec4 &vec)
+/*void mat4::Translate(const vec4 &vec)
 {
 	data[Px] = data[Rx] * vec.x + data[Ux] * vec.x + data[Fx] * vec.x + data[Px] * vec.w;
 	data[Py] = data[Ry] * vec.y + data[Uy] * vec.y + data[Fy] * vec.y + data[Py] * vec.w;
@@ -55,10 +56,10 @@ void mat4::Translate(const vec4 &vec)
 mat4 mat4::operator*(const vec4 &vec)
 {
 
-	data[Px] = data[Rx] * vec.x + data[Ux] * vec.x + data[Fx] * vec.x + data[Px] * vec.w;
-	data[Py] = data[Ry] * vec.y + data[Uy] * vec.y + data[Fy] * vec.y + data[Py] * vec.w;
-	data[Pz] = data[Rz] * vec.z + data[Uz] * vec.z + data[Fz] * vec.z + data[Pz] * vec.w;
-	data[Pw] = data[Rw] * vec.w + data[Uw] * vec.w + data[Fw] * vec.w + data[Pw] * vec.w;
+	return mat4(data[Px] = data[Rx] * vec.x + data[Ux] * vec.x + data[Fx] * vec.x + data[Px] * vec.w,
+		data[Py] = data[Ry] * vec.y + data[Uy] * vec.y + data[Fy] * vec.y + data[Py] * vec.w,
+		data[Pz] = data[Rz] * vec.z + data[Uz] * vec.z + data[Fz] * vec.z + data[Pz] * vec.w,
+		data[Pw] = data[Rw] * vec.w + data[Uw] * vec.w + data[Fw] * vec.w + data[Pw] * vec.w,0,0,0,0,0,0,0,0,0,0,0,0);
 
 }
 
@@ -133,4 +134,4 @@ mat4 mat4::operator-()
 		-data[Rw], -data[Uw], -data[Fw], -data[Pw]);
 
 }
-//unary
+//unary*/

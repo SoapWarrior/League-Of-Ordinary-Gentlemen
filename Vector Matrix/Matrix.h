@@ -16,13 +16,13 @@ public:
 	//Perspective projections
 	//Orthographic projections
 	mat4();
-	mat4(float rx, float ux, float fx, float px	,
+	mat4(float rx, float ux, float fx, float px,
 		float ry, float uy, float fy, float py,
 		float rz, float zx, float fz, float pz,
 		float rw, float uw, float fw, float pw);
 
-	void Frustum();
-	void Orthographic();
+	//void Frustum();
+	//void Orthographic();
 
 	mat4 operator+(const mat4 &other);
 	//operator +
@@ -39,7 +39,7 @@ public:
 	mat4 operator-();
 	//opertator -(unary)
 
-	mat4 operator*(const mat4 &other);
+	//mat4 operator*(const mat4 &other);
 	//operator *(mat4)
 
 	
@@ -47,9 +47,9 @@ public:
 
 
 	void Translate(float x, float y, float z,float w);
-	void Translate(const vec4 &vec);
+	//void Translate(const vec4 &vec);
 
-	mat4 operator*(const vec4 &other);
+	//mat4 operator*(const vec4 &other);
 	//operator * (vec4)
 
 
