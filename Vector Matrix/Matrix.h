@@ -51,9 +51,14 @@ public:
 	void Translate(const vec4 &vec);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mat4 &operator*(const vec4 &other);
 	//operator * (vec4)
 
+=======
+	vec4 operator*(const vec4 &other);
+//	operator * (vec4)
+>>>>>>> origin/master
 =======
 	vec4 operator*(const vec4 &other);
 //	operator * (vec4)
