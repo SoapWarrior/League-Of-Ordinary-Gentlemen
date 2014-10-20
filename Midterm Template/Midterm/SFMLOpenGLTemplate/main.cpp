@@ -10,11 +10,14 @@ void DrawTriangle();
 void Viewports();
 void KeyboardHandle();
 
-float xtranslate[];
-float ytranslate[];
 
-GLuint windowWidth = 1024;
-GLuint windowHeight = 768;
+float Speed = 0.5;
+float xtranslate;
+float ytranslate;
+
+
+double windowWidth = 1024;
+double windowHeight = 768;
 
 sf::Image img_data;
 GLuint texture_handle;
@@ -41,7 +44,10 @@ int main()
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				Game.close();
 
-
+		/*	sf::Vector2i MousePosition = sf::Mouse::getPosition(Game);
+			xtranslate = MousePosition.x;
+			ytranslate = MousePosition.y;*/
+		
 		}
 		Game.setActive();
 		KeyboardHandle();
@@ -74,7 +80,7 @@ void Viewports(){
 	glViewport(0, 0, windowWidth, windowHeight);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-20, 20, -20, 20, 0, 1000);
+	glOrtho(-windowWidth, windowWidth, -windowHeight, windowHeight, 0, 1000);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -87,7 +93,8 @@ void DrawGame(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	DrawSquare(5, 9);
+	glTranslatef(xtranslate, ytranslate, 0);
+	DrawSquare(50, 90);
 	
 
 }
@@ -109,14 +116,17 @@ void KeyboardHandle(){
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down));
 		
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		ytranslate += Speed;
 		
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S));
-		
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		ytranslate -= Speed;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		xtranslate -= Speed;
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		xtranslate += Speed;
 	
 
 }
