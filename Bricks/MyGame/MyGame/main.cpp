@@ -14,7 +14,8 @@
 #include "Vector4.h"
 #include "ControlUtilities.h"
 #include "Controls.h"
-std::vector<model*> ListToDraw;
+#include "Bricks.h"
+
 
 sf::RenderWindow window;
 sf::Event event;
@@ -25,6 +26,8 @@ GameControl cgame;
 Menu view1;
 Viewport view2;
 SceneLoader loader;	//Loads in a text file.
+std::vector<Bricks*> brickList;
+float numBricks = 3;
 
 model Test;
 
@@ -34,30 +37,49 @@ model Test;
 sf::Image img_data;
 GLuint texture_handle;
 
+void initShapes()
+{
+	for (int i = 1; i <= numBricks; i++)
+	{
+		brickList.push_back(new Bricks(-3.5*i,10.0,0,1));
+	}
+	
+}
 void drawShapes()
 {
-
+	for (int i = 0; i < numBricks; i++)
+	{
+		brickList[i]->drawBox();
+	}
 }
 
 void handleKeyboard()
 {
+	std::cout << view2.eye.x << " " << view2.eye.y << std::endl; // -12:9  -24:21
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		view2.tar.y+= 0.1f;
+		//view2.tar.y+= 0.1f;
+		view2.eye.y += view2.tar.y * view2.fraction;//moves camera towards the x direction
+		view2.eye.x += view2.tar.x * view2.fraction;//moves camera towards the x direction
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		view2.tar.y -= 0.1f;
+		view2.eye.y -= view2.tar.y * view2.fraction;//moves camera towards the x direction
+		view2.eye.x -= view2.tar.x * view2.fraction;//moves camera towards the x direction
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		view2.tar.x += 0.1f;
+		//view2.tar.x += 0.1f;
+		view2.eye.y += view2.tar.x * view2.fraction;//moves camera towards the x direction
+		view2.eye.x += view2.tar.y * view2.fraction;//moves camera towards the x direction
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		view2.tar.x -= 0.1f;
+		//view2.tar.x -= 0.1f;
+		view2.eye.y -= view2.tar.x * view2.fraction;//moves camera towards the x direction
+		view2.eye.x -= view2.tar.y * view2.fraction;//moves camera towards the x direction
 	}
 }
 
@@ -71,6 +93,7 @@ void SetupGL(){
 	glEnable(GL_DEPTH_TEST);
 
 	glClearColor(0.0f,0.0f,0.0f,1);
+	initShapes();
 	//cat.loadFromFile("grumpy.png");
 }
 void Setup(){
@@ -80,7 +103,7 @@ void Setup(){
 		PolygonMode::FILL,0,0,-10,0,1,0);
 	//gluLookAt(0, 0, -10, 0, 0, 0, 0, 1, 0);
 	view2=Viewport(ScreenQuad::GAME,ProjectionType::ORTHOGONAL,
-		PolygonMode::FILL, 0, 0, -10, 0, 1, 0);
+		PolygonMode::FILL, -12, 9, -20, 0, 1, 0);
 	
 	loader=SceneLoader("test.txt");
 }
@@ -155,13 +178,14 @@ void Display(){
 
 	//Set camera.
 	gluLookAt(view2.eye.x, view2.eye.y, view2.eye.z,
-		view2.tar.x, view2.tar.y, view2.tar.z,
+		view2.tar.x+view2.eye.x, view2.tar.y+view2.eye.y, view2.tar.z,
 		0, 1, 0);
 
 	//Draw stuff.
 	if (currentState == GAME)
 	{
-		Test.drawBox(0,0,0,0.400);
+		Test.drawBox(-24,22,0,0.4);
+		drawShapes();
 	}
 
 }

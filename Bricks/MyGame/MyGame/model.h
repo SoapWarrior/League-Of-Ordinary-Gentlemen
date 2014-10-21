@@ -12,7 +12,7 @@ public:
 		sizeX = 0;
 		sizeY = 0;
 	}
-
+	std::vector<model*> ListToDraw;
 
 	float positionX;
 	float positionY;

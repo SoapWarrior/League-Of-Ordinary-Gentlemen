@@ -30,7 +30,7 @@ public:
 		pt=_pt;
 		pm=_pm;
 
-		fraction = 1.5f;
+		fraction = 0.1f;
 		angle = 0.0f;
 		rotSpeed = 0.07f;
 	}
